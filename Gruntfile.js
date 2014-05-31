@@ -16,10 +16,8 @@ module.exports = function(grunt) {
             all: [
                 'controllers/**/*.js',
                 'models/**/*.js',
-                'utils/**/*.js',
                 'test/**/*.js',
-                'workers/clipp_ranker.js',
-                'workers/engagement_emails.js']
+            ]
         }
     });
 
