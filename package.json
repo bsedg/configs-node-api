@@ -1,0 +1,24 @@
+{
+  "name": "configs-node-api",
+  "version": "0.1.0",
+  "author": "Brandon Sedgwick <bmsedgwick@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bsedg/configs-node-api.git"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "passport": "^0.2.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "mocha": "*",
+    "should": "*",
+    "grunt-mocha-test": "~0.4.0",
+    "grunt-contrib-jshint": "~0.5.4"
+  }
+}
