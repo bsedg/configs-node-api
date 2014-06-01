@@ -16,5 +16,6 @@ app.get('/', function(req, res) {
 
 app.get('/configs', configsController.getConfigs);
 app.get('/configs/:id', configsController.getConfig);
+app.post('/configs', configsController.createConfig);
 
 app.listen(process.env.PORT || 3412);

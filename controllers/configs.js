@@ -29,3 +29,7 @@ exports.getConfig = function(req, res) {
     var q = configs[req.params.id];
     res.json(q);
 };
+
+exports.createConfig = function(req, res) {
+    res.json({ 'Error': 'Method not yet implemented.' });
+};
