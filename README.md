@@ -21,3 +21,40 @@ A simple REST API to access configurations, which offers an API for:
  ]
 }
 ```
+
+### Login
+
+```
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"username": "tester-1", "password": "password"}' "api/users?action=login"
+```
+
+''Response'':
+```javascript
+{
+    message: 'Session for user created',
+    session_id: 1
+}
+```
+
+### Logout
+
+### GET /configs
+
+Use the session_id and username as parameters to access the API for CRUD operations on configurations.
+
+```
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X GET -d '{"username": "tester-1", "token": "1"}' "api/configs"
+```
+
+Sort by hostname:
+
+```
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X GET -d '{"username": "tester-1", "token": "1"}' "api/configs?sortby=hostname"
+```
+
+### POST /configs
+
+### PUT /configs
+
+### DEL /configs
+
