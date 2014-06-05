@@ -70,8 +70,10 @@ var api = http.createServer(function (req, res) {
         }
     }
     else {
-        res.writeHead(400, {"Content-Type": "application/json"});
-        res.end('{ "message": "Resource not found - ' + resource + '" }');
+        res.writeHead(302, {
+          'Location': 'https://github.com/bsedg/configs-node-api#configs-node-api'
+        });
+        res.end();
     }
 });
 
