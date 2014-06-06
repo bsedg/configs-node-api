@@ -93,6 +93,16 @@ exports.editConfig = function(id, data, res) {
 };
 
 exports.deleteConfig = function(id, res) {
-    res.writeHead(200, {"Content-Type": "text/javascript"});
-    res.end('{"message": "delete config"}');
+    var prev_length = configs.length;
+
+    configs = configs.filter(function(config){ return config._id != id });
+
+    if (prev_length > configs.length) {
+        res.writeHead(200, {"Content-Type": "text/javascript"});
+        res.end('{"message": "Removed config."}');
+    }
+    else {
+        res.writeHead(404, {"Content-Type": "text/javascript"});
+        res.end('{"message": "Config not found, could not delete."}');
+    }
 };
