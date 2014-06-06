@@ -57,21 +57,25 @@ var api = http.createServer(function (req, res) {
             configs.getConfigs(query_string, res);
         }
         else if (method == 'POST') {
-
+            configs.createConfig(query_string, res);
         }
         else if (method == 'PUT') {
-
+            configs.editConfig(query_string, res);
         }
-        else if (method == 'DEL') {
-
+        else if (method == 'DELETE') {
+            configs.deleteConfig(query_string, res);
         }
         else {
-
+            res.writeHead(405, {
+                'message': 'Method not implemented - ' + method,
+                'readme': 'https://github.com/bsedg/configs-node-api#configs-node-api'
+            });
+            res.end();
         }
     }
     else {
-        res.writeHead(302, {
-          'Location': 'https://github.com/bsedg/configs-node-api#configs-node-api'
+        res.writeHead(200, {
+          'readme': 'https://github.com/bsedg/configs-node-api#configs-node-api'
         });
         res.end();
     }

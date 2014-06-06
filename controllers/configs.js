@@ -93,5 +93,16 @@ exports.getConfig = function(req, res) {
 };
 
 exports.createConfig = function(req, res) {
-    res.json({ 'Error': 'Method not yet implemented.' });
+    res.writeHead(200, {"Content-Type": "text/javascript"});
+    res.end('{"message": "create config"}');
+};
+
+exports.editConfig = function(req, res) {
+    res.writeHead(200, {"Content-Type": "text/javascript"});
+    res.end('{"message": "edit config"}');
+};
+
+exports.deleteConfig = function(req, res) {
+    res.writeHead(200, {"Content-Type": "text/javascript"});
+    res.end('{"message": "delete config"}');
 };
