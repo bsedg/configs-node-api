@@ -6,9 +6,15 @@ var
 var api = http.createServer(function (req, res) {
     var
         url = req.url,
+        resource_id,
         resource = url.substring(1, (url.indexOf('?') > 1 ? url.indexOf('?') : url.length)),
         query_string = url.indexOf('?') > 1 ? url.substring(url.indexOf('?')) : null,
         method = req.method;
+
+    if (url.indexOf('/', 1) >= 0) {
+        resource = resource.substring(0, resource.indexOf('/', 1));
+        resource_id = resource.substring(resource.indexOf('/', 1));
+    }
 
     if(resource == 'users') {
         // signup
@@ -92,7 +98,7 @@ var api = http.createServer(function (req, res) {
 
                 // auth json_data.username, json_data.token
 
-                return configs.deleteConfig(json_data, res);
+                return configs.deleteConfig(resource_id, res);
             });
         }
         else {

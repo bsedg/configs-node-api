@@ -82,17 +82,18 @@ exports.getConfigs = function(query, res) {
     }
 };
 
-exports.createConfig = function(req, res) {
+exports.createConfig = function(data, res) {
     res.writeHead(200, {"Content-Type": "text/javascript"});
     res.end('{"message": "create config"}');
 };
 
-exports.editConfig = function(req, res) {
+exports.editConfig = function(data, res) {
     res.writeHead(200, {"Content-Type": "text/javascript"});
     res.end('{"message": "edit config"}');
 };
 
-exports.deleteConfig = function(req, res) {
+exports.deleteConfig = function(query, res) {
+    console.log("DELETE: " + query);
     res.writeHead(200, {"Content-Type": "text/javascript"});
     res.end('{"message": "delete config"}');
 };
