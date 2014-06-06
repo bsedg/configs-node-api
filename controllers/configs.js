@@ -87,13 +87,12 @@ exports.createConfig = function(data, res) {
     res.end('{"message": "create config"}');
 };
 
-exports.editConfig = function(data, res) {
+exports.editConfig = function(id, data, res) {
     res.writeHead(200, {"Content-Type": "text/javascript"});
     res.end('{"message": "edit config"}');
 };
 
-exports.deleteConfig = function(query, res) {
-    console.log("DELETE: " + query);
+exports.deleteConfig = function(id, res) {
     res.writeHead(200, {"Content-Type": "text/javascript"});
     res.end('{"message": "delete config"}');
 };

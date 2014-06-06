@@ -11,9 +11,10 @@ var api = http.createServer(function (req, res) {
         query_string = url.indexOf('?') > 1 ? url.substring(url.indexOf('?')) : null,
         method = req.method;
 
-    if (url.indexOf('/', 1) >= 0) {
-        resource = resource.substring(0, resource.indexOf('/', 1));
-        resource_id = resource.substring(resource.indexOf('/', 1));
+    if (resource.indexOf('/', 1) >= 0) {
+        var parts = resource.split('/');
+        resource = parts[0];
+        resource_id = parts[1];
     }
 
     if(resource == 'users') {
@@ -85,7 +86,7 @@ var api = http.createServer(function (req, res) {
 
                 // auth json_data.username, json_data.token
 
-                return configs.editConfig(json_data, res);
+                return configs.editConfig(resource_id, json_data, res);
             });
         }
         else if (method == 'DELETE') {
