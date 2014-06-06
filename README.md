@@ -54,7 +54,24 @@ curl -H "Content-Type: application/json" -H "Accept: application/json" -X GET -d
 
 ### POST /configs
 
+Create a new configuration
+
+```
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"username": "tester-1", "token": "1"}' "api/configs
+```
+
 ### PUT /configs
 
-### DEL /configs
+Edit a configuration
 
+```
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"username": "tester-1", "token": "1"}' "api/configs/:id
+```
+
+### DELETE /configs
+
+Delete a configuration
+
+```
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE -d '{"username": "tester-1", "token": "1"}' "api/configs/:id
+```
