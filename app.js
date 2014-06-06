@@ -57,13 +57,43 @@ var api = http.createServer(function (req, res) {
             configs.getConfigs(query_string, res);
         }
         else if (method == 'POST') {
-            configs.createConfig(query_string, res);
+            req.on('data', function(data) {
+                var json_data = JSON.parse(data);
+                if (!json_data || typeof json_data.username === undefined || typeof json_data.token === undefined) {
+                    res.writeHead(400, {"Content-Type": "application/json"});
+                    res.end('{ "message": "Bad Request, expecting: POST /configs {username: <usr>, token: <tkn>}" }');
+                }
+
+                // auth json_data.username, json_data.token
+
+                return configs.createConfig(json_data, res);
+            });
         }
         else if (method == 'PUT') {
-            configs.editConfig(query_string, res);
+            req.on('data', function(data) {
+                var json_data = JSON.parse(data);
+                if (!json_data || typeof json_data.username === undefined || typeof json_data.token === undefined) {
+                    res.writeHead(400, {"Content-Type": "application/json"});
+                    res.end('{ "message": "Bad Request, expecting: POST /configs {username: <usr>, token: <tkn>}" }');
+                }
+
+                // auth json_data.username, json_data.token
+
+                return configs.editConfig(json_data, res);
+            });
         }
         else if (method == 'DELETE') {
-            configs.deleteConfig(query_string, res);
+            req.on('data', function(data) {
+                var json_data = JSON.parse(data);
+                if (!json_data || typeof json_data.username === undefined || typeof json_data.token === undefined) {
+                    res.writeHead(400, {"Content-Type": "application/json"});
+                    res.end('{ "message": "Bad Request, expecting: POST /configs {username: <usr>, token: <tkn>}" }');
+                }
+
+                // auth json_data.username, json_data.token
+
+                return configs.deleteConfig(json_data, res);
+            });
         }
         else {
             res.writeHead(405, {
