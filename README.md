@@ -60,7 +60,7 @@ Create a new configuration
 curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"username": "tester-1", "token": "1"}' "api/configs
 ```
 
-### PUT /configs
+### PUT /configs/:id
 
 Edit a configuration
 
@@ -68,7 +68,7 @@ Edit a configuration
 curl -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"username": "tester-1", "token": "1"}' "api/configs/:id
 ```
 
-### DELETE /configs
+### DELETE /configs/:id
 
 Delete a configuration
 
