@@ -82,16 +82,6 @@ exports.getConfigs = function(query, res) {
     }
 };
 
-exports.getConfig = function(req, res) {
-    if(configs.length <= req.params.id || req.params.id < 0) {
-        res.statusCode = 404;
-        return res.send('Error 404: No config found');
-    }
-
-    var q = configs[req.params.id];
-    res.json(q);
-};
-
 exports.createConfig = function(req, res) {
     res.writeHead(200, {"Content-Type": "text/javascript"});
     res.end('{"message": "create config"}');
