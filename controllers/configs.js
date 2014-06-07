@@ -83,8 +83,30 @@ exports.getConfigs = function(query, res) {
 };
 
 exports.createConfig = function(data, res) {
+    var has_error = false;
+
+    if (typeof data.name === 'undefined') has_error = true;
+    if (typeof data.hostname === 'undefined') has_error = true;
+    if (typeof data.port === 'undefined') has_error = true;
+    if (typeof data.username === 'undefined') has_error = true;
+
+    if (has_error) {
+        res.writeHead(400, {"Content-Type": "text/javascript"});
+        res.end('{"message": "Could not create config: missing field (name, hostname, port, or username)"}');
+    }
+
+    config = {
+        '_id': configs.length,
+        'name': data.name,
+        'hostname': data.hostname,
+        'port': data.port,
+        'username': data.username
+    };
+
+    configs.push(config);
+
     res.writeHead(200, {"Content-Type": "text/javascript"});
-    res.end('{"message": "create config"}');
+    res.end('{"message": "created config", "config": ' + JSON.stringify(config) + '}');
 };
 
 exports.editConfig = function(id, data, res) {
