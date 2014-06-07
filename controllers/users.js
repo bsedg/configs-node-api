@@ -37,7 +37,7 @@ exports.signup = function(user, pwd, res) {
         "_id": total_users,
         "username": user,
         "password": pwd
-    })
+    });
 
     res.writeHead(200, {"Content-Type": "application/json"});
     res.end('{ "message": "User created" }');

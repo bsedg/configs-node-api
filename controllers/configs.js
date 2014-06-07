@@ -26,12 +26,13 @@ var sort_by_columns = [
 
 exports.getConfigs = function(query, res) {
     if (query.indexOf('sortby') >= 0) {
-        var
-            query_map = {},
-            query = query.toLowerCase(),
-            query = query.replace('?', ''),
-            query = query.replace('&', ' '),
-            query_parameters = query.split(' ');
+        var query_map = {};
+
+        query = query.toLowerCase();
+        query = query.replace('?', '');
+        query = query.replace('&', ' ');
+
+        var query_parameters = query.split(' ');
 
         // create map of query string [ {parameter: value] }
         for (var i = 0; i < query_parameters.length; i++) {
@@ -42,17 +43,17 @@ exports.getConfigs = function(query, res) {
         if ('sortby' in query_map) {
             var order_by = 'asc';
 
-            if (sort_by_columns.indexOf(query_map['sortby']) < 0) {
+            if (sort_by_columns.indexOf(query_map.sortby) < 0) {
                 res.writeHead(400, {"Content-Type": "text/javascript"});
-                res.end('{"error": "Invalid parameter, orderby must be in ' + sort_by_columns + ' not ' + query_map['sortby'] + '"}');
+                res.end('{"error": "Invalid parameter, orderby must be in ' + sort_by_columns + ' not ' + query_map.sortby + '"}');
             }
 
             if ('orderby' in query_map) {
-                order_by = query_map['orderby'] == 'asc' || query_map['orderby'] == 'desc' ? query_map['orderby'] : order_by;
+                order_by = query_map.orderby == 'asc' || query_map.orderby == 'desc' ? query_map.orderby : order_by;
             }
 
             configs.sort(function(a, b) {
-                    switch(query_map['sortby']) {
+                    switch(query_map.sortby) {
                         case '_id':
                             return order_by == 'asc' ? a._id - b._id : b._id - a._id;
                         case 'name':
@@ -110,7 +111,7 @@ exports.createConfig = function(data, res) {
 };
 
 exports.editConfig = function(id, data, res) {
-    var found_config = configs.filter(function(config){ return config._id == id });
+    var found_config = configs.filter(function(config){ return config._id == id; });
 
     if (found_config.length === 0) {
         res.writeHead(404, {"Content-Type": "text/javascript"});
@@ -124,7 +125,7 @@ exports.editConfig = function(id, data, res) {
     found_config.username = data.username;
 
     // update config in list
-    configs = configs.filter(function(config){ return config._id != id });
+    configs = configs.filter(function(config){ return config._id != id; });
     configs.push(found_config);
 
     res.writeHead(200, {"Content-Type": "text/javascript"});
@@ -134,7 +135,7 @@ exports.editConfig = function(id, data, res) {
 exports.deleteConfig = function(id, res) {
     var prev_length = configs.length;
 
-    configs = configs.filter(function(config){ return config._id != id });
+    configs = configs.filter(function(config){ return config._id != id; });
 
     if (prev_length > configs.length) {
         res.writeHead(200, {"Content-Type": "text/javascript"});
