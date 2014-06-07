@@ -110,8 +110,25 @@ exports.createConfig = function(data, res) {
 };
 
 exports.editConfig = function(id, data, res) {
+    var found_config = configs.filter(function(config){ return config._id == id });
+
+    if (found_config.length === 0) {
+        res.writeHead(404, {"Content-Type": "text/javascript"});
+        res.end('{"message": "Configuration to edit was not found."}');
+        return;
+    }
+
+    found_config.name = 'name' in data ? data.name : found_config.name;
+    found_config.hostname = 'hostname' in data ? data.hostname : found_config.hostname;
+    found_config.port = 'port' in data ? data.port : found_config.port;
+    found_config.username = data.username;
+
+    // update config in list
+    configs = configs.filter(function(config){ return config._id != id });
+    configs.push(found_config);
+
     res.writeHead(200, {"Content-Type": "text/javascript"});
-    res.end('{"message": "edit config"}');
+    res.end('{"message": "Edited configuration.", "configuration": ' + JSON.stringify(found_config) + '}');
 };
 
 exports.deleteConfig = function(id, res) {
