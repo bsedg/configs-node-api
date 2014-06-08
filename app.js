@@ -72,8 +72,13 @@ var api = http.createServer(function (req, res) {
                 }
 
                 // auth json_data.username, json_data.token
-
-                return configs.createConfig(json_data, res);
+                if (users.authenticate(json_data.username, json_data.token)) {
+                    return configs.createConfig(json_data, res);
+                }
+                else {
+                    res.writeHead(401, {"Content-Type": "application/json"});
+                    res.end('{ "message": "Unauthorized username and token." }');
+                }
             });
         }
         else if (method == 'PUT') {

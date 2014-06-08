@@ -69,4 +69,6 @@ exports.logout = function(user, res) {
 
 exports.authenticate = function(user, token) {
     // if current user has an open session and valid token
+    var found_session = users.sessions.filter(function(session){ return session._id == id && session.username == user; });
+    return found_session > 0;
 };
