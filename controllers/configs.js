@@ -25,7 +25,7 @@ var sort_by_columns = [
 ];
 
 exports.getConfigs = function(query, res) {
-    if (query.indexOf('sortby') >= 0) {
+    if (query && query.indexOf('sortby') >= 0) {
         var query_map = {};
 
         query = query.toLowerCase();
