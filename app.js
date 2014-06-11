@@ -1,7 +1,9 @@
 var
     http = require('http'),
+    mongo = require('mongodb').MongoClient,
     users = require('./controllers/users'),
-    configs = require('./controllers/configs');
+    configs = require('./controllers/configs'),
+    mongo_connection = process.env.MONGOHQ_URL ? process.env['MONGOHQ_URL'] : 'mongodb://localhost:27017/configs';
 
 var api = http.createServer(function (req, res) {
     var
@@ -123,5 +125,5 @@ var api = http.createServer(function (req, res) {
     }
 });
 
-api.listen(8000);
-console.log("Server running at http://127.0.0.1:8000/");
+api.listen(process.env.PORT || 8000);
+
