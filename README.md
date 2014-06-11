@@ -25,7 +25,7 @@ A simple REST API to access configurations, which offers an API for:
 ### Login
 
 ```
-curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"username": "tester-1", "password": "password"}' "api/users?action=login"
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"username": "tester-1", "password": "password"}' "http://configs-api.herokuapp.com/users?action=login"
 ```
 
 ''Response'':
@@ -43,13 +43,13 @@ curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST -
 Use the session_id and username as parameters to access the API for CRUD operations on configurations.
 
 ```
-curl -H "Content-Type: application/json" -H "Accept: application/json" -X GET -d '{"username": "tester-1", "token": "1"}' "api/configs"
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X GET -d '{"username": "tester-1", "token": "1"}' "http://configs-api.herokuapp.com/configs"
 ```
 
 Sort by hostname:
 
 ```
-curl -H "Content-Type: application/json" -H "Accept: application/json" -X GET -d '{"username": "tester-1", "token": "1"}' "api/configs?sortby=hostname"
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X GET -d '{"username": "tester-1", "token": "1"}' "http://configs-api.herokuapp.com/configs?sortby=hostname"
 ```
 
 ### POST /configs
@@ -57,7 +57,7 @@ curl -H "Content-Type: application/json" -H "Accept: application/json" -X GET -d
 Create a new configuration
 
 ```
-curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"username": "tester-1", "token": "1"}' "api/configs
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"username": "tester-1", "token": "1"}' "http://configs-api.herokuapp.com/configs"
 ```
 
 ### PUT /configs/:id
@@ -65,7 +65,7 @@ curl -H "Content-Type: application/json" -H "Accept: application/json" -X POST -
 Edit a configuration
 
 ```
-curl -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"username": "tester-1", "token": "1"}' "api/configs/:id
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"username": "tester-1", "token": "1"}' "http://configs-api.herokuapp.com/configs/:id"
 ```
 
 ### DELETE /configs/:id
@@ -73,5 +73,5 @@ curl -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d
 Delete a configuration
 
 ```
-curl -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE -d '{"username": "tester-1", "token": "1"}' "api/configs/:id
+curl -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE -d '{"username": "tester-1", "token": "1"}' "http://configs-api.herokuapp.com/configs/:id"
 ```
